@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Edit Product</title>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 24px;
+      }
+      h2 {
+        margin: 0 0 12px;
+      }
+      .form {
+        max-width: 360px;
+      }
+      label {
+        display: block;
+        margin-top: 10px;
+      }
+      input {
+        width: 100%;
+        padding: 8px;
+        margin-top: 4px;
+      }
+      .btn {
+        margin-top: 14px;
+        padding: 8px 12px;
+        border: 1px solid #0d6efd;
+        background: #0d6efd;
+        color: #fff;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      a {
+        display: inline-block;
+        margin-top: 12px;
+        color: #0d6efd;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h2>Edit Product</h2>
+
+    <form class="form"
+      action="/products/edit/<%= product.id %>?_method=PUT"
+      method="POST"
+      enctype="multipart/form-data">
+
+  <label>Name</label>
+  <input name="name" value="<%= product.name %>" required>
+
+  <label>Price</label>
+  <input name="price" type="number" value="<%= product.price %>" required>
+
+  <label>Quantity</label>
+  <input name="quantity" type="number" value="<%= product.quantity %>" required>
+
+  <label>New Image </label>
+  <input type="file" name="image" accept="image/*">
+
+  <% if (product.url_image) { %>
+    
+    <img src="<%= product.url_image %>" width="80">
+  <% } %>
+
+  <button class="btn" type="submit">Update</button>
+</form>
+
+    <a href="/products">Back</a>
+  </body>
+</html>
